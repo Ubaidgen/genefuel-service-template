@@ -1,0 +1,14 @@
+node_modules
+dist
+coverage
+test
+scripts
+docs
+.git
+.github
+.kilo
+.env
+.env.*
+*.log
+*.tsbuildinfo
+docker-compose.yml
