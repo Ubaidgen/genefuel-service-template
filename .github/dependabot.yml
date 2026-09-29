@@ -5,6 +5,13 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    ignore:
+      # Nest CLI needs the TypeScript compiler API, which 7.0 does not ship (expected back in 7.1).
+      - dependency-name: typescript
+        versions: ["7.0.x"]
+      # Types must match the Node 22 runtime (.nvmrc, engines, Dockerfile); bump with the runtime.
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       nestjs:
         patterns: ["@nestjs/*"]
