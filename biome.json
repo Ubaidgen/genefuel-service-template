@@ -1,0 +1,54 @@
+{
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true, "defaultBranch": "main" },
+  "files": {
+    "includes": ["**", "!**/node_modules", "!**/dist", "!drizzle/meta", "!.kilo"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "assist": { "actions": { "source": { "organizeImports": "on" } } },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended",
+      "style": {
+        "noProcessEnv": "error",
+        "useImportType": "off",
+        "noNonNullAssertion": "error"
+      },
+      "suspicious": {
+        "noExplicitAny": "error",
+        "noConsole": "error"
+      },
+      "security": {
+        "noSecrets": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error",
+        "noUnusedVariables": "error"
+      }
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["src/config/env.ts"],
+      "linter": { "rules": { "style": { "noProcessEnv": "off" } } }
+    },
+    {
+      "includes": ["src/core/db/migrate.ts", "scripts/**"],
+      "linter": { "rules": { "suspicious": { "noConsole": "off" } } }
+    },
+    {
+      "includes": ["test/**"],
+      "linter": { "rules": { "security": { "noSecrets": "off" } } }
+    }
+  ],
+  "javascript": {
+    "parser": { "unsafeParameterDecoratorsEnabled": true },
+    "formatter": { "quoteStyle": "double", "trailingCommas": "all", "semicolons": "always" }
+  }
+}
